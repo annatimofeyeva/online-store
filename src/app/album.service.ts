@@ -5,6 +5,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 
 @Injectable()
 export class AlbumService {
+  selectedAlbum = null;
 
   albums: FirebaseListObservable<any[]>;
 
@@ -29,6 +30,7 @@ export class AlbumService {
      albumEntryInFirebase.update({title: localUpdatedAlbum.title,
                                  artist: localUpdatedAlbum.artist,
                                  description: localUpdatedAlbum.description});
+      this.selectedAlbum = null;
    }
    deleteAlbum(localAlbumToDelete){
     var albumEntryInFirebase = this.getAlbumById(localAlbumToDelete.$key);
